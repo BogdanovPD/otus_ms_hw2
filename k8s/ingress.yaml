@@ -1,0 +1,18 @@
+# Enable ingress addon + MacOS Requires minikube tunnel + minikube ip in etc/host to make Ingress working
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hw2app-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: arch.homework
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: hw2app-service
+            port: 
+              number: 8080

@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config
+data:
+  POSTGRES_DB: otus_hw2
+  POSTGRES_USER: otus_hw2
+  POSTGRES_PASSWORD: otus_hw2
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secret
+type: Opaque
+data:
+  POSTGRES_DB: b3R1c19odzI=
+  POSTGRES_USER: b3R1c19odzI=
+  POSTGRES_PASSWORD: b3R1c19odzI=

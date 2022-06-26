@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hw2app
+  name: hw2app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hw2app
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: hw2app
+    spec:
+      containers:
+      - image: chocolazerboom/otus_hw2app
+        name: hw2app
+        env:
+          - name: POSTGRES_DB
+            valueFrom:
+              secretKeyRef:
+                name: secret
+                key: POSTGRES_DB
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                name: secret
+                key: POSTGRES_USER
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: secret
+                key: POSTGRES_PASSWORD
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080

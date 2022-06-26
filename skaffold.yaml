@@ -1,0 +1,17 @@
+apiVersion: skaffold/v2beta28
+kind: Config
+metadata:
+  name: hw-
+build:
+  artifacts:
+  - image: chocolazerboom/otus_hw2app
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  kubectl:
+    manifests:
+    - k8s/deployment.yaml
+#    - k8s/ingress.yaml
+#    - k8s/postgres.yaml
+#    - k8s/service.yaml
+#    - k8s/config.yaml
